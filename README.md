@@ -4,7 +4,13 @@
 
 <img src="https://github.com/hiveml/tensorflow-grad-cam/blob/master/images/cat_heatmap.png">
 
-## with Resnet-50
+### Features:
+
+Modular with Tensorflow slim. Easy to drop in other [Slim Models](https://github.com/tensorflow/models/tree/master/research/slim#pre-trained-models)
+
+Udated to work with Tensorflow 1.5
+
+Includes various output options: heatmap, shading, blur
 
 #### Link to blog post
 
