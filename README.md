@@ -4,6 +4,7 @@
 
 <img src="https://github.com/hiveml/tensorflow-grad-cam/blob/master/images/cat_heatmap.png">
 
+<img src="https://github.com/hiveml/tensorflow-grad-cam/blob/master/images/scarjo.png">
 ### Features:
 
 Modular with Tensorflow slim. Easy to drop in other [Slim Models](https://github.com/tensorflow/models/tree/master/research/slim#pre-trained-models)
