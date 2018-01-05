@@ -1,5 +1,4 @@
-import os
-from training.nets import inception_resnet_v2
+import os,sys
 import tensorflow as tf
 import numpy as np
 from skimage import io
@@ -42,6 +41,9 @@ def load_labels_from_file(dataset_dir):
 def load_image(img_path):
   print("Loading image")
   img = cv2.imread(img_path)
+  if img is None:
+      sys.stderr.write('Unable to load img: %s\n' % img_path)
+      sys.exit(1)
   img = cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
   return img
 
@@ -55,7 +57,7 @@ def preprocess_image(image,eval_image_size):
 
 def grad_cam(img, imgs0, end_points, sess, predicted_class, layer_name, nb_classes, eval_image_size):
   print("Setting gradients to 1 for target class and rest to 0")
-  # Conv layer tensor [?,7,7,512]
+  # Conv layer tensor [?,8,8,512]
   conv_layer = end_points[layer_name]
   print("conv_layer",conv_layer.get_shape())
   # [1000]-D tensor with target class index set to 1 and rest as 0
