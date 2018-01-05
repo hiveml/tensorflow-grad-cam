@@ -10,7 +10,7 @@ from training.preprocessing import preprocessing_factory
 
 flags = tf.app.flags
 flags.DEFINE_string("input", "images/cat.jpg", "Path to input image ['images/cat.jpg']")
-flags.DEFINE_string("output", "example.png", "Path to output image ['example.png']")
+flags.DEFINE_string("output", "output.png", "Path to output image ['output.png']")
 flags.DEFINE_string("layer_name", None, "Layer till which to backpropagate")
 flags.DEFINE_string("model_name", "resnet_v2_50", "Name of the model")
 flags.DEFINE_string("preprocessing_name", None, "Name of the image preprocessor")
