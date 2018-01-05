@@ -52,7 +52,7 @@ from __future__ import print_function
 
 import tensorflow as tf
 
-from nets import resnet_utils
+from model.nets import resnet_utils
 
 slim = tf.contrib.slim
 resnet_arg_scope = resnet_utils.resnet_arg_scope
@@ -208,9 +208,10 @@ def resnet_v2(inputs,
         end_points = slim.utils.convert_collection_to_dict(
             end_points_collection)
 
+        end_points['PrePool'] = net
         if global_pool:
           # Global average pooling.
-          net = tf.reduce_mean(net, [1, 2], name='pool5', keep_dims=True)
+          net = tf.reduce_mean(net, [1, 2], name='pool5', keepdims=True)
           end_points['global_pool'] = net
         if num_classes is not None:
           net = slim.conv2d(net, num_classes, [1, 1], activation_fn=None,
@@ -219,6 +220,7 @@ def resnet_v2(inputs,
           if spatial_squeeze:
             net = tf.squeeze(net, [1, 2], name='SpatialSqueeze')
             end_points[sc.name + '/spatial_squeeze'] = net
+          end_points['Logits'] = net
           end_points['predictions'] = slim.softmax(net, scope='predictions')
         return net, end_points
 resnet_v2.default_image_size = 224

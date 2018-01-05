@@ -1,3 +1,6 @@
 imagenet/*.ckpt
 imagenet/*.graph
 output.png
+*.pyc
+model/nets/*.pyc
+model/preprocessing/*.pyc

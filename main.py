@@ -5,8 +5,8 @@ from skimage import io
 from matplotlib import pyplot as plt
 import cv2
 
-from training.nets import nets_factory
-from training.preprocessing import preprocessing_factory
+from model.nets import nets_factory
+from model.preprocessing import preprocessing_factory
 
 flags = tf.app.flags
 flags.DEFINE_string("input", "images/cat.jpg", "Path to input image ['images/cat.jpg']")
@@ -58,7 +58,6 @@ def preprocess_image(image,eval_image_size):
 def grad_cam(img, imgs0, end_points, sess, predicted_class, layer_name, nb_classes, eval_image_size):
   # Conv layer tensor [?,10,10,2048]
   conv_layer = end_points[layer_name]
-  print("conv_layer",conv_layer.get_shape())
   # [1000]-D tensor with target class index set to 1 and rest as 0
   one_hot = tf.sparse_to_dense(predicted_class, [nb_classes], 1.0)
   signal = tf.multiply(end_points[_logits_name], one_hot)
@@ -70,14 +69,10 @@ def grad_cam(img, imgs0, end_points, sess, predicted_class, layer_name, nb_class
 
   output, grads_val = sess.run([conv_layer, norm_grads], feed_dict={imgs0: img})
   output = output[0]           # [10,10,2048]
-  print("output",output.shape)
   grads_val = grads_val[0]	 # [10,10,2048]
-  print("grads_val", grads_val.shape)
 
   weights = np.mean(grads_val, axis = (0, 1)) 			# [2048]
-  print("Weights",weights.shape)
   cam = np.ones(output.shape[0 : 2], dtype = np.float32)	# [10,10]
-  print("cam", cam.shape)
 
   # Taking a weighted average
   for i, w in enumerate(weights):
