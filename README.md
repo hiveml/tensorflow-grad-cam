@@ -1,5 +1,10 @@
+
+
 # Grad-Cam - Tensorflow Slim 
-## Resnet-50
+
+<img src="https://github.com/hiveml/tensorflow-grad-cam/blob/master/images/cat_heatmap.png">
+
+## with Resnet-50
 
 #### Link to blog post
 
@@ -18,7 +23,6 @@ Download the ResNet-50 weights:
 ```
 ./main.sh
 ```
-<img src="https://github.com/hiveml/tensorflow-grad-cam/blob/master/images/cat_heatmap.png">
 
 ### Changing the Class
 
