@@ -17,7 +17,7 @@ flags.DEFINE_string("preprocessing_name", None, "Name of the image preprocessor"
 flags.DEFINE_integer("eval_image_size", None, "Resize images to this size before eval")
 flags.DEFINE_string("dataset_dir", "./imagenet", "Location of the labels.txt")
 flags.DEFINE_string("checkpoint_path", "./imagenet/resnet_v2_50.ckpt", "saved weights for model")
-flags.DEFINE_integer("label_offset", 0, "Used for imagenet with 1001 classes for background class")
+flags.DEFINE_integer("label_offset", 1, "Used for imagenet with 1001 classes for background class")
 
 FLAGS = flags.FLAGS
 
@@ -56,8 +56,7 @@ def preprocess_image(image,eval_image_size):
   return image
 
 def grad_cam(img, imgs0, end_points, sess, predicted_class, layer_name, nb_classes, eval_image_size):
-  print("Setting gradients to 1 for target class and rest to 0")
-  # Conv layer tensor [?,8,8,512]
+  # Conv layer tensor [?,10,10,2048]
   conv_layer = end_points[layer_name]
   print("conv_layer",conv_layer.get_shape())
   # [1000]-D tensor with target class index set to 1 and rest as 0
@@ -70,14 +69,14 @@ def grad_cam(img, imgs0, end_points, sess, predicted_class, layer_name, nb_class
   norm_grads = tf.divide(grads, tf.sqrt(tf.reduce_mean(tf.square(grads))) + tf.constant(1e-5))
 
   output, grads_val = sess.run([conv_layer, norm_grads], feed_dict={imgs0: img})
-  output = output[0]           # [8,8,512]
+  output = output[0]           # [10,10,2048]
   print("output",output.shape)
-  grads_val = grads_val[0]	 # [8,8,512]
+  grads_val = grads_val[0]	 # [10,10,2048]
   print("grads_val", grads_val.shape)
 
-  weights = np.mean(grads_val, axis = (0, 1)) 			# [512]
+  weights = np.mean(grads_val, axis = (0, 1)) 			# [2048]
   print("Weights",weights.shape)
-  cam = np.ones(output.shape[0 : 2], dtype = np.float32)	# [8,8]
+  cam = np.ones(output.shape[0 : 2], dtype = np.float32)	# [10,10]
   print("cam", cam.shape)
 
   # Taking a weighted average
@@ -131,7 +130,6 @@ def main(_):
 
     # Target class
     predicted_class = preds[0]
-    predicted_class = 2
     # Target layer for visualization
     layer_name = FLAGS.layer_name or _layer_names[FLAGS.model_name][0]
     # Number of output classes of model being used

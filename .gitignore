@@ -1,1 +1,3 @@
 imagenet/*.ckpt
+imagenet/*.graph
+output.png
