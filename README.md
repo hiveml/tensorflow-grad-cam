@@ -6,18 +6,18 @@
 ### Installation
 
 Clone the repo:
-
-git clone https://github.com/hiveml/tensorflow-grad-cam.git`
+```
+git clone https://github.com/hiveml/tensorflow-grad-cam.git
 cd tensorflow-grad-cam
-
+```
 Download the ResNet-50 weights:
-
-./imagnet/get_checkpoint.sh
-
+```
+./imagenet/get_checkpoint.sh
+```
 ### Usage
-
+```
 ./main.sh
-
+```
 <img src="https://github.com/hiveml/tensorflow-grad-cam/blob/master/images/cat_heatmap.png">
 
 ### Changing the Class
