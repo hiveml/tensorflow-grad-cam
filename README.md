@@ -18,7 +18,7 @@ Download the ResNet-50 weights:
 
 ./main.sh
 
-<img src=https://github.com/hiveml/tensorflow-grad-cam/blob/master/images/cat_heatmap.jpg?raw=true>
+<img src="https://github.com/hiveml/tensorflow-grad-cam/blob/master/images/cat_heatmap.png">
 
 ### Changing the Class
 
