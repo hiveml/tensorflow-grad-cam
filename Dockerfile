@@ -23,7 +23,9 @@ RUN apt-get update && \
     libtiff-dev \
     libjasper-dev \
     libdc1394-22-dev \
-    qt5-default
+    qt5-default \
+    wget \
+    vim
 
 RUN git clone https://github.com/opencv/opencv.git /root/opencv && \
 	cd /root/opencv && \
@@ -41,6 +43,8 @@ RUN ln /dev/null /dev/raw1394
 RUN cd /root && git clone https://github.com/hiveml/tensorflow-grad-cam
 
 WORKDIR /root/tensorflow-grad-cam
+
+RUN cd imagenet && ./get_checkpoint.sh
 
 CMD /bin/bash
 
