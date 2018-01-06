@@ -19,10 +19,12 @@ Includes various output options: heatmap, shading, blur
 
 ### Dependencies
 
-* `pip install tensorflow`
-* `pip install scikit-image`
-* `sudo apt-get install python-tk`
+* Python 2.7 and pip
+* Scikit image : `sudo apt-get install python-skimage`
+* Tkinter: `sudo apt-get install python-tk`
+* Tensorflow >= 1.5 : `pip install tensorflow==1.5.0rc0`
 * Opencv - see https://docs.opencv.org/2.4/doc/tutorials/introduction/linux_install/linux_install.html
+
 
 ### Installation
 
