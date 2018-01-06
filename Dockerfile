@@ -22,7 +22,8 @@ RUN apt-get update && \
     libpng-dev \
     libtiff-dev \
     libjasper-dev \
-    libdc1394-22-dev
+    libdc1394-22-dev \
+    qt5-default
 
 RUN git clone https://github.com/opencv/opencv.git /root/opencv && \
 	cd /root/opencv && \
