@@ -13,7 +13,7 @@ Udated to work with Tensorflow 1.5
 
 Includes various output options: heatmap, shading, blur
 
-#### Link to blog post
+#### More examples and explanation [here](https://thehive.ai/blog/inside-a-neural-networks-mind)
 
 
 ### Dependencies
