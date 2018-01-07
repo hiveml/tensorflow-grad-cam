@@ -23,7 +23,10 @@ FLAGS = flags.FLAGS
 
 slim = tf.contrib.slim
 
-_layer_names = { "resnet_v2_50":       ["PrePool","predictions"]}
+_layer_names = { "resnet_v2_50":       ["PrePool","predictions"],
+                 "resnet_v2_101":       ["PrePool","predictions"],
+                 "resnet_v2_152":       ["PrePool","predictions"],
+                 }
 
 _logits_name = "Logits"
 
@@ -148,8 +151,8 @@ def main(_):
     # Display and save
     io.imshow(new_img)
     plt.axis('off')
-    plt.show()
     plt.savefig(FLAGS.output,bbox_inches='tight')
+    plt.show()
 
 if __name__ == '__main__':
 	tf.app.run()

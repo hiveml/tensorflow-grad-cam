@@ -4,7 +4,6 @@
 
 <img src="https://github.com/hiveml/tensorflow-grad-cam/blob/master/images/cat_heatmap.png">
 
-<img src="https://github.com/hiveml/tensorflow-grad-cam/blob/master/images/scarjo.png">
 
 ### Features:
 
@@ -44,8 +43,17 @@ Download the ResNet-50 weights:
 
 ### Changing the Class
 
-Show gambling example
+By default this code shows the grad-cam results for the top class. You can 
+change the `predicted_class` argument to function `grad_cam` to see where the network 
+would look for other classes.
 
-### How to load another resnet model
+### How to load another resnet\_v2 model
 
-### How to load another architecture
+First download the new model from here: [Slim Models](https://github.com/tensorflow/models/tree/master/research/slim#pre-trained-models)
+
+Then modify the input arguments in main.sh:
+```
+python main.py --model_name=resnet_v2_101 --dataset_dir=./imagenet/ --checkpoint_path=./imagenet/resnet_v2_101.ckpt --input=./images/cat.jpg --eval_image_size=299
+
+```
+<img src="https://github.com/hiveml/tensorflow-grad-cam/blob/master/images/scarjo.png">
