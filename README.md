@@ -57,3 +57,6 @@ python main.py --model_name=resnet_v2_101 --dataset_dir=./imagenet/ --checkpoint
 
 ```
 <img src="https://github.com/hiveml/tensorflow-grad-cam/blob/master/images/scarjo.png">
+
+Repo is based off this [code](https://github.com/Ankush96/grad-cam.tensorflow).
+
